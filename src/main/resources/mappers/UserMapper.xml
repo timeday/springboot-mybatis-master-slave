@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.msql.dynamicdatasource.mapper.UserDao">
+
+    <cache ></cache>
+
+    <select id="select" resultType="com.msql.dynamicdatasource.modal.User">
+        SELECT *
+        FROM user
+        WHERE id = #{id}
+        LIMIT 1
+    </select>
+
+    <select id="getAllUser" resultType="com.msql.dynamicdatasource.modal.User">
+        SELECT *
+        FROM user
+    </select>
+
+    <update id="update" parameterType="com.msql.dynamicdatasource.modal.User" flushCache="true">
+        UPDATE user
+        SET name = #{name}, age = #{age}
+        WHERE id = #{id}
+        LIMIT 1
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM user
+        WHERE id = #{id}
+        LIMIT 1
+    </delete>
+
+    <insert id="insert" parameterType="com.msql.dynamicdatasource.modal.User">
+        INSERT INTO user (name, age) VALUES (#{name}, #{age});
+    </insert>
+</mapper>
